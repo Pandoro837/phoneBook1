@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import='com.javaex.dao.PhoneDao' %>
-<%@ page import='com.javaex.dao.PhoneApp' %>
 <%@ page import='com.javaex.vo.PersonVo' %>
 <%@ page import='java.util.List' %>
 
@@ -29,7 +28,7 @@
 	
 		<table border = "1">
 			<tr>
-				<td>이름</td>
+				<td>이름 (<%= personList.get(i).getPersonId() %>)</td>
 				<td><%= personList.get(i).getName() %></td>
 
 			</tr>
@@ -41,6 +40,10 @@
 				<td>회사</td>
 				<td><%= personList.get(i).getCompany() %></td>
 			</tr>
+			<tr>
+				<td><a href = "./updateForm.jsp?id=<%=personList.get(i).getPersonId()%>">[수정]</a> </td>
+				<td><a href = "./delete.jsp?id=<%=personList.get(i).getPersonId()%>">[삭제]</a> </td>
+			</tr>
 		</table>
 		<br>
 		
@@ -49,7 +52,6 @@
 	%>	
 		
 	<a href = "./writeForm.jsp">추가번호 등록</a>
-	<a href = "./deleteForm.jsp">번호 삭제</a>
 	<a href = "./searchForm.jsp">번호 검색</a>
 	
 </body>

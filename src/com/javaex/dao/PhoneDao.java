@@ -226,6 +226,48 @@ public class PhoneDao {
 		return personList;
 	}
 	
+//	public PersonVo getPerson(int personId) {
+//		PersonVo personVo = this.getList().get(personId);
+//		return personVo;
+//	}
+	
+	public PersonVo getPerson(int personId) {
+		PersonVo personVo = new PersonVo();
+		getConnection();
+		
+		try {
+			String query = "";
+			query+= " SELECT ";
+			query+= " 		person_id, ";
+			query+= " 		name, ";
+			query+= " 		hp, ";
+			query+= " 		company ";
+			query+= " FROM ";
+			query+= " 		person ";
+			query+= " WHERE person_id = ? ";
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, personId);
+			rs = pstmt.executeQuery();
+			
+			
+			
+			while(rs.next()) {
+				String name = rs.getString("name");
+				String hp = rs.getString("hp");
+				String company = rs.getString("company");
+				personVo = new PersonVo(personId, name, hp, company);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		close();
+		
+		return personVo;
+	}
+	
 }
 	
 	

@@ -4,6 +4,8 @@
 <%@ page import="com.javaex.vo.PersonVo" %>    
 <%@ page import='java.util.List' %>  
 <%
+	request.setCharacterEncoding("UTF-8");	//post일 때, 한글이 깨지는 문제 해결
+	
 	//파라미터 받기
 	String name = request.getParameter("name");
 	String hp = request.getParameter("hp");
@@ -17,12 +19,15 @@
 	phoneDao.insert(personVo);
 	
 	//리스트 가져오기
-	List<PersonVo> personList = phoneDao.getList();
+	//List<PersonVo> personList = phoneDao.getList();
 	//출력해서 확인
-	phoneDao.printList(personList);
+	//phoneDao.printList(personList);
 	/* System.out.println(name);
 	System.out.println(hp);
 	System.out.println(company); */ 
+	
+	//리스트 가져오기 - > 리다이렉트
+	response.sendRedirect("./list.jsp");
 	
 %>
 <!DOCTYPE html>
@@ -32,7 +37,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>전화번호 리스트-insert</h1>
+	<%-- <h1>전화번호 리스트-insert</h1>
 	<p>입력한 정보 내역입니다</p>
 	
 	<% 
@@ -58,6 +63,6 @@
 		
 	<%	
 	}
-	%>	
+	%>	 --%>
 </body>
 </html>

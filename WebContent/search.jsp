@@ -18,7 +18,9 @@
 </head>
 <body>
 	<h1>검색하신 결과입니다</h1>
-	<% for(PersonVo personInfo : personList){
+	<% 
+		if(personList.size() > 0){
+			for(PersonVo personInfo : personList){
 	%>
 		<table border = "1">
 			<tr>
@@ -35,7 +37,11 @@
 			</tr>
 		</table>
 	<%
+			}
+		} else {
+	%> <p>검색어와 일치하는 내용이 없습니다.</p><%
 		}
 	%>
+	<a href = "./list.jsp">리스트로 이동</a>
 </body>
 </html>

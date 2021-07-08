@@ -5,8 +5,17 @@
 
 <%
 	PhoneDao phoneDao = new PhoneDao();
-	int personId = Integer.parseInt(request.getParameter("personId"));
+	//파라미터 꺼내기
+	int personId = Integer.parseInt(request.getParameter("id"));
+	
+	//삭제하기
 	phoneDao.delete(personId);
+	
+	//리스트 가져오기 - > 리다이렉트
+	response.sendRedirect("./list.jsp");
+	
+	
+	
 %>    
     
     
